@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          file: .Dockerfile
+          file: .docker/.Dockerfile
           tags: |
             ${{ secrets.REGISTRY_URL }}/chatgpt-bot:latest
             ${{ secrets.REGISTRY_URL }}/chatgpt-bot:${{ steps.version.outputs.VALUE }}
