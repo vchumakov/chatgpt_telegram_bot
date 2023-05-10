@@ -1,0 +1,12 @@
+{
+  "github": {
+    "release": true
+  },
+  "git": {
+    "commit": false
+  },
+  "npm": {
+    "ignoreVersion": true,
+    "publish": false
+  }
+}
