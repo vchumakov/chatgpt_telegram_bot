@@ -1,0 +1,29 @@
+version: '3.8'
+
+volumes:
+  mongodb:
+    driver: local
+  config:
+    driver: local
+
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - mongodb:/data/db
+
+  bot:
+    image: registry.cargoetl.com/chatgpt-bot:0.0.3
+    command: python3 bot/bot.py
+    volumes:
+      - config:/code/config
+
+  mongo_express:
+    image: mongo-express:latest
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=chatgpt_telegram_bot
+      - ME_CONFIG_BASICAUTH_USERNAME=username
+      - ME_CONFIG_BASICAUTH_PASSWORD=password
